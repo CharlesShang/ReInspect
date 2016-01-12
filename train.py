@@ -6,6 +6,8 @@ import json
 import os
 import random
 from scipy.misc import imread
+import sys
+sys.path.insert(0, '..') # add apollocaffe to my path
 import apollocaffe
 from apollocaffe.models import googlenet
 from apollocaffe.layers import (Power, LstmUnit, Convolution, NumpyData,

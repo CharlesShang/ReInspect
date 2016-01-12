@@ -5,7 +5,7 @@
         "idl_mean": "./data/brainwash_mean.npy"
     },
     "solver": {
-        "base_lr": 0.02,
+        "base_lr": 0.002,
         "max_iter": 800001,
         "test_iter": 599,
         "test_interval": 4000,
