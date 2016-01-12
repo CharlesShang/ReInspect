@@ -2,3 +2,7 @@ data/
 *.pyc
 *.swp
 *.so
+*.h5
+*.jpg
+*.caffemodel
+.ipynb_checkpoints/
