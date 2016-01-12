@@ -5,6 +5,7 @@ import numpy as np
 import json
 import os
 import random
+import cv2
 from scipy.misc import imread
 import sys
 sys.path.insert(0, '..') # add apollocaffe to my path
