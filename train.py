@@ -240,7 +240,7 @@ def train(config):
                                    image_mean, net_config)
 
     forward(net, input_gen.next(), config["net"])
-    net.draw_to_file(logging["schematic_path"])
+    #net.draw_to_file(logging["schematic_path"])
 
     if solver["weights"]:
         net.load(solver["weights"])

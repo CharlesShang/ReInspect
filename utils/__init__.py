@@ -50,7 +50,7 @@ def annotation_to_h5(a, cell_width, cell_height, region_size, max_len):
 
     for cidx in xrange(cells_per_image):
         cur_num_boxes = min(len(box_list[cidx]), max_len)
-        #assert(cur_num_boxes <= max_len)
+        # assert(cur_num_boxes <= max_len)
 
         box_flags[0, cidx, 0, 0:cur_num_boxes, 0] = 1
 
