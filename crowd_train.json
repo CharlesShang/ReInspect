@@ -12,13 +12,13 @@
         "momentum": 0.9,
         "random_seed": 2,
         "clip_gradients": 0.1,
-        "gamma": 0.8,
+        "gamma": 0.9,
         "stepsize": 4000,
-        "weights": "./data/snapshot/reinspect_noinit_4000.h5"
+        "weights": "./data/snapshot/reinspect_noinit_24000.h5"
     },
     "logging": {
         "display_interval": 100,
-        "snapshot_prefix": "./data/snapshot/reinspect_noinit",
+        "snapshot_prefix": "./data/snapshot/reinspect_euclideanloss",
         "snapshot_interval": 4000,
         "schematic_path": "/tmp/reinspect.png",
         "graph_prefix": "/tmp/history",
