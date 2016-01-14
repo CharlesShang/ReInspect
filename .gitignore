@@ -8,3 +8,7 @@ data
 *.png
 *.caffemodel
 .ipynb_checkpoints/
+# config files
+crowd_train.json
+crowd_test.json
+crowd_evaluation.ipynb
