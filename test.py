@@ -81,7 +81,7 @@ def test(config):
     if config.has_key("conf_th"):
         conf_th = config["conf_th"]
     else:
-        conf_th = 0.6
+        conf_th = 0.5
     
     mae = 0.
     for i in range(num_test_images):
@@ -106,7 +106,7 @@ def test(config):
     
         acc_rects = stitch_rects(all_rects)
         
-        display = False
+        display = True
         if display:
             for rect in acc_rects:
                 if rect.true_confidence < conf_th:
@@ -116,7 +116,13 @@ def test(config):
                               (rect.cx+int(rect.width/2), rect.cy+int(rect.height/2)), 
                               (255,0,0),
                               2)
-         
+#                cv2.circle(img, 
+#                              (rect.cx, rect.cy), 
+#                              ((rect.width + rect.height)/4), 
+#                              (255,0,0),
+#                              2)
+            img_name = './data/tmp/%05d.jpg' % i
+            plt.imsave(img_name, img)
             plt.figure(figsize=(15,10))
             plt.imshow(img)
             
