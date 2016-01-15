@@ -24,7 +24,7 @@ from utils.annolist import AnnotationLib as al
 
 def get_numbers(a, cell_width, cell_height, region_size):
     cell_regions = get_cell_grid(cell_width, cell_height, region_size)
-    cells_per_image = len(cell_regions)     
+    cells_per_image = len(cell_regions)
     numbers = np.zeros((cells_per_image), dtype = np.float)
     for cidx in xrange(cells_per_image):
         # cell center
@@ -193,14 +193,14 @@ def generate_number_layers(net, step, filler, max_len):
                weight_filler=filler))
         net.f(ReLU("relu_number_I%d" % step, bottoms=["ip_number_I%d" % step], tops=["ip_number_I%d" % step]))
         concat_bottoms["number"].append("ip_number_I%d" % step)
-        
+
     net.f(Concat("number_concat", bottoms = concat_bottoms["number"], concat_dim=2))
     net.f(InnerProduct("ip_number", 1,
            bottoms=["number_concat"], output_4d=False,
            weight_filler=filler))
     net.f(ReLU("relu_number", bottoms=["ip_number"], tops=["ip_number"]))
 
-def generate_number_losses(net):
+def generate_number_losses(net, net_config):
     """Generates the EuclideanLoss losses used for counting."""
     net.f("""
       name: "numberloss"
@@ -209,8 +209,8 @@ def generate_number_losses(net):
       bottom: "numbers"
       top: "numberloss"
       loss_weight: %s
-      """ % 2)
-      
+          """ % net_config["euclidean_loss_weight"])
+
 def generate_losses(net, net_config):
     """Generates the two losses used for ReInspect. The hungarian loss and
     the final box_loss, that represents the final softmax confidence loss"""
@@ -271,7 +271,7 @@ def forward(net, input_data, net_config, deploy=False):
     generate_number_layers(net, step, filler, net_config["max_len"])
     if not deploy:
         generate_losses(net, net_config)
-        generate_number_losses(net)
+        generate_number_losses(net, net_config)
 
     if deploy:
         bbox = [np.array(net.blobs["ip_bbox%d" % j].data)
