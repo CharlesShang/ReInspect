@@ -202,8 +202,10 @@ def generate_number_layers(net, step, filler, max_len):
         bottom: "number_concat"
         top: "number_rtrans"
           """)
+    net.f(Dropout("number_dropout", 0.5,
+                  bottoms=["number_rtrans"]))
     net.f(InnerProduct("ip_number", 1,
-           bottoms=["number_rtrans"], output_4d=False,
+           bottoms=["number_dropout"], output_4d=False,
            weight_filler=filler))
     # relu should NOT be added
     # net.f(ReLU("relu_number", bottoms=["ip_number"], tops=["ip_number"]))
