@@ -208,7 +208,7 @@ def generate_number_losses(net, net_config):
 #          """ % net_config["euclidean_loss_weight"])
     net.f("""
       name: "numberloss"
-      type: "AbsdistLoss"
+      type: "EuclideanLoss"
       bottom: "ip_number"
       bottom: "number"
       top: "numberloss"
@@ -228,7 +228,7 @@ def generate_losses(net, filler, net_config):
            
     net.f("""
           name: "nunbersloss"
-          type: "AbsdistLoss"
+          type: "EuclideanLoss"
           bottom: "ip_numbers"
           bottom: "numbers"
           top: "nunbersloss"
