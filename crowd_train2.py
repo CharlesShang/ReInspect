@@ -340,10 +340,20 @@ def train(config):
         if i % solver["test_interval"] == 0:
             net.phase = 'test'
             test_loss = []
+            loss0 = 0
+            loss1 = 0
+            loss2 = 0
             for _ in range(solver["test_iter"]):
                 forward(net, input_gen_test.next(), config["net"], False)
                 test_loss.append(net.loss)
+                loss0 += net.blobs["numberloss"].data[0]
+                loss1 += net.blobs["hungarian"].data[0]
+                loss2 += net.blobs["box_loss"].data[0]
             loss_hist["test"].append(np.mean(test_loss))
+            loss0 = loss0 / solver["test_iter"]
+            loss1 = loss1 / solver["test_iter"]
+            loss2 = loss2 / solver["test_iter"]
+            print "Number Loss", loss0, "Hungarian Loss", loss1, "Box Loss", loss2
             net.phase = 'train'
         forward(net, input_gen.next(), config["net"])
         loss_hist["train"].append(net.loss)
