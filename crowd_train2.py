@@ -218,9 +218,17 @@ def generate_number_ground_truth_layers(net, number):
     
 def generate_number_losses(net, net_config):
     """Generates the EuclideanLoss losses used for counting."""
+#    net.f("""
+#      name: "numberloss"
+#      type: "EuclideanLoss"
+#      bottom: "ip_number"
+#      bottom: "number"
+#      top: "numberloss"
+#      loss_weight: %s
+#          """ % net_config["euclidean_loss_weight"])
     net.f("""
       name: "numberloss"
-      type: "EuclideanLoss"
+      type: "AbsdistLoss"
       bottom: "ip_number"
       bottom: "number"
       top: "numberloss"
