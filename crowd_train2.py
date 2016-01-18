@@ -205,7 +205,8 @@ def generate_number_layers(net, step, filler, max_len):
     net.f(InnerProduct("ip_number", 1,
            bottoms=["number_rtrans"], output_4d=False,
            weight_filler=filler))
-    net.f(ReLU("relu_number", bottoms=["ip_number"], tops=["ip_number"]))
+    # relu should NOT be added
+    # net.f(ReLU("relu_number", bottoms=["ip_number"], tops=["ip_number"]))
 
 def generate_number_ground_truth_layers(net, number):
     """Generates the NumpyData layers that output the numbers."""
