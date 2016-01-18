@@ -198,7 +198,8 @@ def generate_number_layers(net, step, filler, max_len):
     net.f(InnerProduct("ip_number", 1,
            bottoms=["number_concat"], output_4d=False,
            weight_filler=filler))
-    net.f(ReLU("relu_number", bottoms=["ip_number"], tops=["ip_number"]))
+    # relu should NOT be added, if doing so there will be no bp if output is < 0
+    # net.f(ReLU("relu_number", bottoms=["ip_number"], tops=["ip_number"]))
 
 def generate_number_losses(net, net_config):
     """Generates the EuclideanLoss losses used for counting."""
