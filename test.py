@@ -71,7 +71,7 @@ def test(config):
     net = apollocaffe.ApolloNet()
     net.phase = 'test'
     forward(net, test_list[0], config["net"], True)
-    net.load("./data/snapshot/reinspect_euclideanloss124k_68000.h5")
+    net.load("data/snapshot/reinspect_hcs_800000.h5")
     
     annolist = al.AnnoList()
     net_config = config["net"]
