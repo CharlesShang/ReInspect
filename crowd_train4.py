@@ -42,7 +42,7 @@ def get_numbers(a, cell_width, cell_height, region_size):
     
 def get_number_of_image(a):
     number = np.zeros((1,1), dtype = np.float)
-    number[0][0] = len(a.rects)
+    number[0][0] = int(len(a.rects) / 8)
     return number
 
 def load_idl(idlfile, data_mean, net_config, jitter=True):
@@ -181,7 +181,7 @@ def generate_number_layers(net, step, filler, max_len):
           """)
     net.f(Dropout("number_dropout", 0.5,
                   bottoms=["number_rtrans"]))
-    net.f(InnerProduct("ip_number", 300,
+    net.f(InnerProduct("ip_number", 40,
            bottoms=["number_dropout"], output_4d=False,
            param_lr_mults=[10,20], param_decay_mults=[10,20],
            weight_filler=filler))
