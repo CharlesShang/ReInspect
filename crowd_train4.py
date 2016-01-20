@@ -181,7 +181,7 @@ def generate_number_layers(net, step, filler, max_len):
           """)
     net.f(Dropout("number_dropout", 0.5,
                   bottoms=["number_rtrans"]))
-    net.f(InnerProduct("ip_number", 1,
+    net.f(InnerProduct("ip_number", 300,
            bottoms=["number_dropout"], output_4d=False,
            param_lr_mults=[10,20], param_decay_mults=[10,20],
            weight_filler=filler))
@@ -221,7 +221,7 @@ def generate_losses(net, filler, net_config):
     
     net.f(Dropout("numbers_dropout", 0.5,
                   bottoms=["bbox_concat"]))
-    net.f(InnerProduct("ip_numbers", 1,
+    net.f(InnerProduct("ip_numbers", 40,
            bottoms=["numbers_dropout"], output_4d=False,
            param_lr_mults=[10,20], param_decay_mults=[10,20],
            weight_filler=filler))
