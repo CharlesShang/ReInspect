@@ -68,7 +68,8 @@ def load_idl(idlfile, data_mean, net_config, jitter=True):
                 jit_anno, net_config["grid_width"], net_config["grid_height"],
                 net_config["region_size"])
             yield {"imname": anno.imageName, "raw": jit_image, "image": image,
-                   "boxes": boxes, "box_flags": box_flags, "numbers": numbers}
+                   "boxes": boxes, "box_flags": box_flags, "numbers": numbers,
+                   "anno": jit_anno}
 
 
 def generate_decapitated_googlenet(net, net_config):
