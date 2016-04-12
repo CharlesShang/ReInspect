@@ -5,20 +5,20 @@
         "idl_mean": "./data/brainwash_mean.npy"
     },
     "solver": {
-        "base_lr": 0.002,
+        "base_lr": 0.001,
         "max_iter": 800001,
         "test_iter": 599,
         "test_interval": 4000,
         "momentum": 0.9,
         "random_seed": 2,
-        "clip_gradients": 0.1,
-        "gamma": 0.8,
-        "stepsize": 10000,
-        "weights": "./data/reinspect_800000.h5"
+        "clip_gradients": 0.2,
+        "gamma": 0.5,
+        "stepsize": 8000,
+        "weights": "./data/snapshot/crowd_detection_128000.h5"
     },
     "logging": {
         "display_interval": 100,
-        "snapshot_prefix": "./data/snapshot/crowd_detection",
+        "snapshot_prefix": "./data/snapshot/crowd_detectionI",
         "snapshot_interval": 4000,
         "schematic_path": "/tmp/reinspect_crowd_detection.png",
         "graph_prefix": "/tmp/history",

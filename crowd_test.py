@@ -100,7 +100,7 @@ def test(config):
                                config["net"]["img_width"],
                                config["net"]["img_height"], image_scaling=1.0)
 
-    num_test_images = 599
+    num_test_images = 5
 
     # Warning: load_idl returns an infinite generator. Calling list() before islice() will hang.
     test_list = list(itertools.islice(
@@ -113,8 +113,8 @@ def test(config):
     net = apollocaffe.ApolloNet()
     net.phase = 'test'
     forward(net, test_list[0], config["net"], True)
-    net.load("data/snapshot/reinspect_hcs_600000.h5")
-    # net.load("data/reinspect_hesI_800000.h5")
+    #net.load("data/snapshot/reinspect_hcs_600000.h5")
+    net.load("data/reinspect_800000.h5")
     
     annolist = al.AnnoList()
     net_config = config["net"]
